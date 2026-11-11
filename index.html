@@ -8,30 +8,43 @@
         <link rel="stylesheet" href="/css/style.css">
         <title>taskDraft</title>
     </head>
-    <body>
+    <body class='dark-theme'>
         <header>
+            <div class="title">
+                <a href="#">
+                    <h1>taskDraft</h1>
+                </a>
+
+                <button class="change-theme">
+                     <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+          
+            
             <fieldset>
-                <input
-                 type="text"
-                 placeholder="O que precisar ser feito hoje?"
-                 id="text"
-                 minlength="4"
-                 maxlength="150"
-                 size="30px"
-                 >
+                <div class="double-edge">
+                    <input
+                     type="text"
+                     placeholder="O que precisar ser feito hoje?"
+                     id="text"
+                     minlength="4"
+                     maxlength="150"
+                     size="30px"
+                     >
+                </div>
                  <button class="btn">
                     <i class="fa-solid fa-plus"></i>
                     Tarefas
                  </button>
             </fieldset>
 
-            <div class="tasksPlus">
+            <div class="taskPlus">
                 <p>Tarefas Adicionadas</p>
             </div>
         </header>
         
         <main>
-            <section>
+            <section class="hero">
                <article class="tasks">
                </article>
             </section>

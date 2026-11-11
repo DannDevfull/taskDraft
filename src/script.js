@@ -1,49 +1,80 @@
 const btn = document.querySelector('.btn');
 const textRecebido = document.querySelector('#text');
 const tasksArticle = document.querySelector('.tasks');
-console.log(tasksArticle);
+const buttonTheme = document.querySelector('.change-theme')
 
 btn.addEventListener('click', function(){
-    let tagDiv = document.createElement('div');
-    let tagAncora = document.createElement('a');
-    let text = textRecebido.value;
+
+    if(textRecebido.value == " "){
+        alert("Texto inválido ou Vazio. Por favor, verifique e tente novamente!");
+    }else{
+
+        let tagDiv = document.createElement('div');
+        let tagAncora = document.createElement('span');
+        let buttonDelete = document.createElement('button');
+        let text = textRecebido.value;
+        
+        tagAncora.textContent = "Clique aqui para editar esse texto";
+        tagAncora.setAttribute('data-url','https://github.com/DannDevfull' );
+       
+
+       
 
     
+        tagAncora.addEventListener('click', function(){
+            tagAncora.contentEditable = 'true';
+            tagAncora.focus();
+             // focus coloca o curso piscando dentro dele
 
-
-    tagAncora.textContent = "Clique aqui para editar esse texto";
-    tagAncora.href = '#'
-
-    tagAncora.contentEditable = 'false';
-
-    // para  não gerar conflito entre o editar clicando e o navegar pelo link clicando, devemos fazer com que o link só seja editavel qunado o usuário clicar duas vezes.
-
-    // Double Click para editar
-    tagAncora.addEventListener('dblclick', function() {
-
-        tagAncora.contentEditable = 'true';
-        tagAncora.focus();
-        // focus coloca o curso piscando dentro dele
-        console.log('texto do link pronto para ser editado');
-
-    });
+        });
 
     
-    // click fora para sair do modo de edição
-    tagAncora.addEventListener('blur', function(){
-        tagAncora.contentEditable = 'false';
-        console.log('Conteúdo pronto para navegação');
-    });
+        tagAncora.addEventListener('dblclick', function() {
+            tagAncora.contentEditable = 'false';
+            const url = this.getAttribute('data-url');
+            window.location.href = url;
+            
+            
+        });
+    
+        // click fora para sair do modo de edição
+        tagAncora.addEventListener('blur', function(){
+            if(tagAncora.textContent == ''){
+                alert('opa, sua edição não contém conteúdo. Por favor, digite alfo para sair do modo de edição!');
+                tagAncora.contentEditable = 'true'
+            }else{
+                tagAncora.contentEditable = 'false';
+                console.log('Conteúdo pronto para navegação');
 
-    
+            }
+        });
 
-    tagDiv.textContent += text;
-    tagDiv.innerHTML += '<button class="btn">Excluir</button>';
+        buttonDelete.textContent = "Excluir";
     
-    tagDiv.appendChild(tagAncora);
-    tasksArticle.appendChild(tagDiv);
-   
+        tagDiv.textContent += text;
+        tagDiv.appendChild(buttonDelete);
+        tagDiv.appendChild(tagAncora);
+        tasksArticle.appendChild(tagDiv);
+
+        // Depois que o programa executar essa série de passos, o valor do input recebe vazio novamente
+        textRecebido.value = " ";
+       
+
+        // Deixando possivel deletar as tarefas
+  
+        buttonDelete.addEventListener('click', function(){
+
+            tagDiv.remove();
     
+        });
+
+    };
     
+});
+
+
+buttonTheme.addEventListener('click', function(){
+  
+        document.body.classList.toggle('light-theme');
     
-})
+});
