@@ -28,19 +28,23 @@ btn.addEventListener('click', function(){
 
         });
 
-    
         tagAncora.addEventListener('dblclick', function() {
-            tagAncora.contentEditable = 'false';
-            const url = this.getAttribute('data-url');
-            window.location.href = url;
             
+            if(tagAncora.textContent == ""){
+                alert("Você ainda não digitou o nome de sua tarefa")
+                tagAncora.contentEditable = "false"
+            }else{
+
+                const url = this.getAttribute('data-url');
+                window.location.href = url;
+            };
             
         });
-    
+
         // click fora para sair do modo de edição
         tagAncora.addEventListener('blur', function(){
             if(tagAncora.textContent == ''){
-                alert('opa, sua edição não contém conteúdo. Por favor, digite alfo para sair do modo de edição!');
+                alert('Por favor, dê um nome a sua tarefa!');
                 tagAncora.contentEditable = 'true'
             }else{
                 tagAncora.contentEditable = 'false';
@@ -48,6 +52,9 @@ btn.addEventListener('click', function(){
 
             }
         });
+
+         
+
 
         buttonDelete.textContent = "Excluir";
     
