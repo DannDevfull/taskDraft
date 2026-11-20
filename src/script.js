@@ -1,7 +1,9 @@
 const btn = document.querySelector('.btn');
 const textRecebido = document.querySelector('#text');
 const tasksArticle = document.querySelector('.tasks');
-const buttonTheme = document.querySelector('.change-theme')
+const buttonTheme = document.querySelector('.change-theme');
+
+const listaObjetos = [];
 
 btn.addEventListener('click', function(){
 
@@ -9,13 +11,26 @@ btn.addEventListener('click', function(){
         alert("Texto inválido ou Vazio. Por favor, verifique e tente novamente!");
     }else{
 
+        const tarefas = {
+            id: Date.now(),
+            titulo: "Sem título",
+            descricao: textRecebido.value,
+        };
+
+        listaObjetos.push(tarefas);
+        salvarTarefas();
+
+
+
         let tagDiv = document.createElement('div');
         let tagAncora = document.createElement('span');
         let buttonDelete = document.createElement('button');
         let text = textRecebido.value;
         
         tagAncora.textContent = "Clique aqui para editar esse texto";
-        tagAncora.setAttribute('data-url','https://github.com/DannDevfull' );
+
+        // O que vou carregar é a minha página com o id único da tarefa
+        tagAncora.setAttribute('data-url','tarefas.html?id='+ tarefas.id);
        
 
        
@@ -48,14 +63,15 @@ btn.addEventListener('click', function(){
                 tagAncora.contentEditable = 'true'
             }else{
                 tagAncora.contentEditable = 'false';
+                tarefas.titulo = tagAncora.textContent;
+                salvarTarefas();
+
                 console.log('Conteúdo pronto para navegação');
 
             }
         });
 
          
-
-
         buttonDelete.textContent = "Excluir";
     
         tagDiv.textContent += text;
@@ -78,6 +94,17 @@ btn.addEventListener('click', function(){
     };
     
 });
+
+
+function salvarTarefas(){
+    // Pegando a minha lista de objetos e a transformando em ums string estrutura (Formato JSON)
+   const listaEmTexto = JSON.stringify(listaObjetos);
+   localStorage.setItem("ListaTarefas", listaEmTexto);
+
+}
+console.log(localStorage.getItem("ListaTarefas"));
+
+
 
 
 buttonTheme.addEventListener('click', function(){
