@@ -7,7 +7,7 @@ const listaObjetos = [];
 
 btn.addEventListener('click', function(){
 
-    if(textRecebido.value == " "){
+    if(textRecebido.value.trim() == ""){
         alert("Texto inválido ou Vazio. Por favor, verifique e tente novamente!");
     }else{
 
@@ -80,15 +80,26 @@ btn.addEventListener('click', function(){
         tasksArticle.appendChild(tagDiv);
 
         // Depois que o programa executar essa série de passos, o valor do input recebe vazio novamente
-        textRecebido.value = " ";
+        textRecebido.value = "";
        
+
 
         // Deixando possivel deletar as tarefas
   
         buttonDelete.addEventListener('click', function(){
-
             tagDiv.remove();
-    
+            const indice = listaObjetos.findIndex((tarefaAtual) => {
+                 return tarefaAtual.id === tarefas.id;
+            });
+
+            if( indice != -1){
+                listaObjetos.splice(indice, 1);
+            }else{
+                console.log("Índice -1 encontrado!");
+            }
+
+            salvarTarefas();
+
         });
 
     };
