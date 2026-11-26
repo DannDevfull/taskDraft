@@ -1,1 +1,147 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Manrope:wght@200..800&display=swap');
+
+:root{
+
+    --Plano-fundo-light:  #f2e8da;
+    --plano-fundo-dark:   #1B2433;
+    --texto-dark: #fff;
+    --texto-light: #111111;
+    --Ouro-destaque-dark: #a88440;
+    --destaque-light: #D9541E;
+    --superficie-cartao: #fff;
+    --color-place-light-theme: #ffffff81; 
+    --color-place-dark-theme: #00000081; 
+    --font-corm: "Cormorant Garamond", serif;
+    --font-man:  "Manrope", sans-serif;
+
+}
+
+.dark-theme{
+    --Bg-color:var(--plano-fundo-dark);
+    --text-color:var(--texto-dark);
+    --high: var(--Ouro-destaque-dark);
+    --cards:var(--superficie-cartao);
+    --text-color-dark:var(--texto-light);
+    --color-placeHolder:var(--color-place-dark-theme);
+    
+
+}
+
+.light-theme{
+    --Bg-color: var(--Plano-fundo-light);
+    --text-color: var(--texto-light);
+    --text-color-dark:var(--superficie-cartao);
+    --high: var(--destaque-light);
+    --cards: var(--texto-light);
+    --color-placeHolder:var(--color-place-light-theme);
+   
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--font-man);
+    background-color: var(--Bg-color);
+    color: var(--text-color);
+}
+
+header{
+    display: flex;
+    width: 92%;
+    margin: auto;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--color-placeHolder);
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+h1{
+    font-family: var(--font-corm);
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.tarefaName h2{
+    font-family: var(--font-corm);
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.tarefaName h3{
+    font-family: var(--font-corm);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+
+
+
+/* Animando a letra "o" do nome da aplicação */
+/* A variável --progresso guarda um ângulo */
+@property --progresso{
+    syntax: "<angle>";
+    initial-value: 0deg;  /*A animação começa com o grau zerado*/
+    inherits: false;   /*
+                            Essa propriedade pega um valor de uma propriedade a partir de seu elemento pai. Ele herdar propriedades de seu pai. 
+                            Aqui ele evita que essas regras vazem e baguncem outros elementos. 
+                        */
+}
+
+.letraAnimada{
+
+    /* 
+        Definindo o formato do círculo que será preenchido dinâmicamente 
+    */
+    display:  inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-left: 2px;
+
+
+    /* Definindo a pintura do círculo criado acima */
+    /* Define o gradiente que preenche o círculo conforme o angulo aumenta */
+    background: conic-gradient(var(--high) var(--progresso),#fff 0deg);
+
+
+    /* 
+        Aplica uma "Máscara" invisível no centro da bolinha que a recorta. deixando o meio transparente, mantendo a bordar externa visível.
+        É isso que a transforma me um anel. 
+
+        o -webkit-mask serve apenas para garantir compatibilidade com navegadores mais antigos 
+    */
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0);
+
+    /* 
+        "animation" manda executar o roteiro chamada preencher. 
+        O forwards mantem o anel fechado no final
+    */
+    animation: preencher 2s ease-in-out forwards;
+
+}
+
+
+/*  É a regra que dita o destino da animação */
+@keyframes preencher {
+
+    /* 
+        Diz ao navegador para pegar o preencher que começa com 0deg e o faz avançar graduamente até 360deg. Conforme o angulo cresce, a cor do círculo avança também
+    */
+
+    to{
+        --progresso: 360deg;
+    }
+}
