@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
         <link rel="stylesheet" href="css/tarefas.css">
+        <script src="https://jsdelivr.net"></script>
         <title>Página de Tarefas</title>
     </head>
     <body class="light-theme">
@@ -16,6 +17,46 @@
                 </div>
             </div>
         </header>
+
+        <main>
+            <section class="hero">
+                <div class="description">
+                    <h2>Status das Tarefas</h2>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <i class="fa-solid fa-list-check"></i>
+                       <p>Total de tarefas</p>
+                    </div>
+                    <div class="card">
+                       <i class="fa-regular fa-circle"></i>
+                        <p>A fazer</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-regular fa-clock"></i>
+                        <p>Em andamento</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                        <p>Concluídas</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="notes">
+                <div class="addTask">
+                    <h2>Minhas Tarefas</h2>
+                    <button class="btnTask">Adicionar mais tarefas</button>
+                </div>
+
+                <!-- tarefas deverão ser criadas dinamicamento pelo JS -->
+            </section>
+
+
+
+
+        </main>
 
 
         <script src="src/tarefasPage.js"></script>

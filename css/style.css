@@ -227,8 +227,8 @@ main .hero{
             align-items: center;
             flex-wrap: wrap;
             width: 100%;
-            padding: 2.2rem;
-            margin-bottom: 4rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
             border-bottom: 0.1rem solid var(--cards);
             
 
@@ -253,13 +253,15 @@ main .hero{
 
 
             & span{
+                display: flex;
+                flex-direction: row;
+                align-items: start;
                 text-align: justify;
                 border: 0.1rem solid var(--cards);
                 border-radius: 1.4rem;
                 padding: 1.8rem;
                 max-width: 850px;
-                overflow-wrap:break-word ;
-                margin-top: 2rem;
+                overflow-wrap:break-word;
                 color: var(--cards);
                 user-select: none;
                 transition: 0.4s ease-in;
